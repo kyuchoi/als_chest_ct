@@ -19,7 +19,7 @@ library(SurvMetrics)
 
 
 # read data file
-chestCT <- read.csv("C:/Users/user/Downloads/ALS_CT/Chest_CT_0719.csv")
+chestCT <- read.csv("Chest_CT_0719.csv")
 
 # check variables starts with "Date" or ends with "date"
 date_columns <- grep("^Date|date$", names(chestCT))
@@ -34,7 +34,7 @@ if (length(date_columns) > 0) {
 included <- chestCT %>%
   filter(Stage_final != 0) %>%
   filter(Diagnosis_check == 'ALS') %>%
-  filter(Hospital_ID != 56143171) %>% # unknown onset
+  filter(Hospital_ID != 00000000) %>% # unknown onset
   filter(Time_TIV_death < 365*20) %>% # remove extreme long survival to satisfy the proportional hazard assumption of RMI
   filter(Final_Diagnosis_JSK != "Others") %>% # FAS. There is no evidence for the other segments
   filter(Chest_CT_indication_category != "Underlying_resp_ds") %>% # underlying respiratory disease
